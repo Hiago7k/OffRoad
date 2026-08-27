@@ -25,13 +25,4 @@ public class ChamaApi {
         return json;
     };
 
-    public void callApiMotos(){
-        System.out.println("Lógica para chamar API aqui dentro");
-
-    };
-
-    public void callApiCaminhoes(){
-        System.out.println("Lógica para chamar API aqui dentro");
-
-    };
 }

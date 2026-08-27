@@ -1,10 +1,13 @@
 package br.com.offroad.OffRoad.principal;
 
+import br.com.offroad.OffRoad.services.ChamaApi;
+
 import java.util.Scanner;
 
 public class Principal {
-
+private String json;
     public void exibeMenu() {
+        ChamaApi obterDados = new ChamaApi();
         System.out.println("****************");
         System.out.println("--- OFF ROAD ---");
         System.out.println("****************");
@@ -18,17 +21,21 @@ public class Principal {
         switch (modelo) {
             case "carros":
                 System.out.println("caiu em Carro");
-                // Chamar Service da API carro
+                json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/carros/marcas");
+                System.out.println(json);
 
                 break;
             case "motos":
                 System.out.println("caiu em motos");
-                // Chamar Service da API motos
+                json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/motos/marcas");
+                System.out.println(json);
 
                 break;
             case "caminhoes":
                 System.out.println("caiu em Caminhoes");
-                // Chamar Service da API caminhoes
+                json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/caminhoes/marcas");
+                System.out.println(json);
+
                 break;
             default:
                 System.out.println("Opção invalida!");
