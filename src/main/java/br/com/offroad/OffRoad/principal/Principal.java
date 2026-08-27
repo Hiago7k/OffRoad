@@ -18,12 +18,17 @@ public class Principal {
         switch (modelo) {
             case "carros":
                 System.out.println("caiu em Carro");
+                // Chamar Service da API carro
+
                 break;
             case "motos":
                 System.out.println("caiu em motos");
+                // Chamar Service da API motos
+
                 break;
             case "caminhoes":
                 System.out.println("caiu em Caminhoes");
+                // Chamar Service da API caminhoes
                 break;
             default:
                 System.out.println("Opção invalida!");
