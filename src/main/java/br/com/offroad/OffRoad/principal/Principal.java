@@ -1,7 +1,6 @@
 package br.com.offroad.OffRoad.principal;
 
 import br.com.offroad.OffRoad.models.ConverteDados;
-import br.com.offroad.OffRoad.models.DadosCarros;
 import br.com.offroad.OffRoad.models.Veiculos;
 import br.com.offroad.OffRoad.services.ChamaApi;
 
@@ -27,7 +26,7 @@ private String json;
             case "carros":
                 System.out.println("caiu em Carro");
                 json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/carros/marcas");
-                DadosCarros dados = converssor.obterDados(json, DadosCarros.class);
+                Veiculos dados = converssor.obterDados(json, Veiculos.class);
                 System.out.println(json);
                 System.out.println(dados);
 
