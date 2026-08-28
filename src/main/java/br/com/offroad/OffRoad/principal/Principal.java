@@ -28,12 +28,11 @@ private String json;
             case "carros":
                 System.out.println("caiu em Carro");
                 json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/carros/marcas");
-                Veiculos dados = converssor.obterDados(json, Veiculos.class);
-                List<Veiculos> listaDosVeiculos = new ArrayList<>();
+                // isso aqui da certo por que os dado dessa api não estao em uma array de json
+                // preciso descobrir como fazer isso de forma correta
+                Veiculos[] dados = converssor.obterDados(json, Veiculos[].class);
 
-                listaDosVeiculos.add(dados);
 
-                listaDosVeiculos.forEach(System.out::println);
 
                 System.out.println(json);
                 System.out.println(dados);
