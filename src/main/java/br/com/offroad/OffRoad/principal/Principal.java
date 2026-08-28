@@ -4,6 +4,8 @@ import br.com.offroad.OffRoad.models.ConverteDados;
 import br.com.offroad.OffRoad.models.Veiculos;
 import br.com.offroad.OffRoad.services.ChamaApi;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -27,8 +29,16 @@ private String json;
                 System.out.println("caiu em Carro");
                 json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/carros/marcas");
                 Veiculos dados = converssor.obterDados(json, Veiculos.class);
+                List<Veiculos> listaDosVeiculos = new ArrayList<>();
+
+                listaDosVeiculos.add(dados);
+
+                listaDosVeiculos.forEach(System.out::println);
+
                 System.out.println(json);
                 System.out.println(dados);
+                // ta dando erro por que essa api, retorna uma lista dentro
+                //dessa lista esta os dados
 
                 break;
             case "motos":
