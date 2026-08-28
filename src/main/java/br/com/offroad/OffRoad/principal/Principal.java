@@ -32,12 +32,12 @@ private String json;
                 // preciso descobrir como fazer isso de forma correta
                 Veiculos[] dados = converssor.obterDados(json, Veiculos[].class);
 
-
-
-                System.out.println(json);
+                // System.out.println(json);
                 System.out.println(dados);
-                // ta dando erro por que essa api, retorna uma lista dentro
-                //dessa lista esta os dados
+                for(var dadosDaApi: dados){
+                    System.out.println(dadosDaApi);
+                }
+
 
                 break;
             case "motos":

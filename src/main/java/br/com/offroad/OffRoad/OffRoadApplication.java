@@ -15,5 +15,4 @@ public class OffRoadApplication implements SpringApplicationRunListener {
         Principal principal = new Principal();
         principal.exibeMenu();
     }
-
 }
