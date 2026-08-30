@@ -4,9 +4,7 @@ import br.com.offroad.OffRoad.models.ConverteDados;
 import br.com.offroad.OffRoad.models.Veiculos;
 import br.com.offroad.OffRoad.services.ChamaApi;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Principal {
 private String json;
@@ -30,37 +28,35 @@ private String montadora;
         switch (modelo) {
             case "carros":
                 System.out.println("caiu em Carro");
-                json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/carros/marcas");
+                json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas");
                 Veiculos[] dados = converssor.obterDados(json, Veiculos[].class);
 
                 System.out.println("Exibindo todas as montadoras");
-                for(var dadosDaApi: dados){
-                    System.out.println(dadosDaApi);
-                }
+                Arrays.stream(dados)
+                        .forEach(System.out::println);
 
-                System.out.println("Digite a marca que deseja procurar: ");
-                montadora = leitor.nextLine();
-                System.out.println("Exibindo todos os veículos da montadora");
-                Veiculos[] dadosCarrosMarcas = converssor.obterDados(json, Veiculos[].class);
-
-                String pesquisa = "https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos";
-                jsonMarcas = obterDados.callApiCarros()
-
-                System.out.println(obterDados);
-                for(var dadosDaApi: dados){
-                    System.out.println(dadosDaApi);
-                }
+//
+//                System.out.println("Digite a marca que deseja procurar: ");
+//                montadora = leitor.nextLine();
+//                System.out.println("Exibindo todos os veículos da montadora");
+//                Veiculos[] dadosCarrosMarcas = converssor.obterDados(json, Veiculos[].class);
+//                String pesquisa = "https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos";
+//                json = obterDados.callApiVeiculos(pesquisa);
+//                System.out.println("---------------");
+//                for(var dadosMarcas : dadosCarrosMarcas){
+//                    System.out.println(dadosMarcas);
+//                }
 
                 break;
             case "motos":
                 System.out.println("caiu em motos");
-                json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/motos/marcas");
+                json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/motos/marcas");
                 System.out.println(json);
 
                 break;
             case "caminhoes":
                 System.out.println("caiu em Caminhoes");
-                json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/caminhoes/marcas");
+                json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/caminhoes/marcas");
                 System.out.println(json);
 
                 break;

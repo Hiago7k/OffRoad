@@ -11,7 +11,7 @@ import java.net.http.HttpResponse;
 
 public class ChamaApi {
 
-    public String callApiCarros(String endereco){
+    public String callApiVeiculos(String endereco){
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request  = HttpRequest.newBuilder()
                 .uri(URI.create(endereco))
