@@ -13,7 +13,8 @@ private String montadora;
 
     public void exibeMenu() {
         ChamaApi obterDados = new ChamaApi();
-        ConverteDados converssor = new ConverteDados();
+        ConverteDados conversor = new ConverteDados();
+        Veiculos[] dados = new Veiculos[]{};
 
         System.out.println("****************");
         System.out.println("--- OFF ROAD ---");
@@ -27,25 +28,27 @@ private String montadora;
 
         switch (modelo) {
             case "carros":
-                System.out.println("caiu em Carro");
                 json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas");
-                Veiculos[] dados = converssor.obterDados(json, Veiculos[].class);
+                dados = conversor.obterDados(json, Veiculos[].class);
 
                 System.out.println("Exibindo todas as montadoras");
                 Arrays.stream(dados)
                         .forEach(System.out::println);
 
-//
-//                System.out.println("Digite a marca que deseja procurar: ");
-//                montadora = leitor.nextLine();
-//                System.out.println("Exibindo todos os veículos da montadora");
-//                Veiculos[] dadosCarrosMarcas = converssor.obterDados(json, Veiculos[].class);
-//                String pesquisa = "https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos";
-//                json = obterDados.callApiVeiculos(pesquisa);
-//                System.out.println("---------------");
-//                for(var dadosMarcas : dadosCarrosMarcas){
-//                    System.out.println(dadosMarcas);
-//                }
+                System.out.println("------------------------------------------------------------");
+                System.out.println("Digite o código da montadora: ");
+                montadora = leitor.nextLine();
+                //https://parallelum.com.br/fipe/api/v1/carros/marcas/238/modelos
+                //json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos");
+                json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/238/modelos");
+                dados = conversor.obterDados(json, Veiculos[].class);
+
+                System.out.println("Exibindo informações da montadora: " + montadora);
+
+                Arrays.stream(dados)
+                        .forEach(System.out::println);
+
+
 
                 break;
             case "motos":
