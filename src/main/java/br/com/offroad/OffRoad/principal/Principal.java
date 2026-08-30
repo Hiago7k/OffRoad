@@ -1,6 +1,7 @@
 package br.com.offroad.OffRoad.principal;
 
 import br.com.offroad.OffRoad.models.ConverteDados;
+import br.com.offroad.OffRoad.models.Montadoras;
 import br.com.offroad.OffRoad.models.Veiculos;
 import br.com.offroad.OffRoad.services.ChamaApi;
 
@@ -15,6 +16,7 @@ private String montadora;
         ChamaApi obterDados = new ChamaApi();
         ConverteDados conversor = new ConverteDados();
         Veiculos[] dados = new Veiculos[]{};
+        Montadoras dadosMarca = new Montadoras("", "");
 
         System.out.println("****************");
         System.out.println("--- OFF ROAD ---");
@@ -38,15 +40,19 @@ private String montadora;
                 System.out.println("------------------------------------------------------------");
                 System.out.println("Digite o código da montadora: ");
                 montadora = leitor.nextLine();
+
+                // a api de montadoras tem um array dentro
                 //https://parallelum.com.br/fipe/api/v1/carros/marcas/238/modelos
                 //json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos");
                 json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/238/modelos");
-                dados = conversor.obterDados(json, Veiculos[].class);
-
+                dadosMarca = conversor.obterDados(json, Montadoras.class);
+                List<Montadoras> dadosMontadroas = new ArrayList<>();
+                dadosMontadroas.add(dadosMarca);
                 System.out.println("Exibindo informações da montadora: " + montadora);
 
-                Arrays.stream(dados)
-                        .forEach(System.out::println);
+                for(var marcas : dadosMontadroas){
+                    System.out.println(marcas);
+                }
 
 
 
