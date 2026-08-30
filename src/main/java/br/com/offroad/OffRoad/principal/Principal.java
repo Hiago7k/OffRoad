@@ -10,6 +10,9 @@ import java.util.Scanner;
 
 public class Principal {
 private String json;
+private String modelo;
+private String montadora;
+
     public void exibeMenu() {
         ChamaApi obterDados = new ChamaApi();
         ConverteDados converssor = new ConverteDados();
@@ -22,22 +25,31 @@ private String json;
         System.out.println("Escolha uma categoria abaixo");
         System.out.println("carros " + "\nmotos" + "\ncaminhoes");
         System.out.println("Digite o modelo: ");
-        String modelo = leitor.nextLine();
+        modelo = leitor.nextLine();
 
         switch (modelo) {
             case "carros":
                 System.out.println("caiu em Carro");
                 json = obterDados.callApiCarros("https://parallelum.com.br/fipe/api/v1/carros/marcas");
-                // isso aqui da certo por que os dado dessa api não estao em uma array de json
-                // preciso descobrir como fazer isso de forma correta
                 Veiculos[] dados = converssor.obterDados(json, Veiculos[].class);
 
-                // System.out.println(json);
-                System.out.println(dados);
+                System.out.println("Exibindo todas as montadoras");
                 for(var dadosDaApi: dados){
                     System.out.println(dadosDaApi);
                 }
 
+                System.out.println("Digite a marca que deseja procurar: ");
+                montadora = leitor.nextLine();
+                System.out.println("Exibindo todos os veículos da montadora");
+                Veiculos[] dadosCarrosMarcas = converssor.obterDados(json, Veiculos[].class);
+
+                String pesquisa = "https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos";
+                jsonMarcas = obterDados.callApiCarros()
+
+                System.out.println(obterDados);
+                for(var dadosDaApi: dados){
+                    System.out.println(dadosDaApi);
+                }
 
                 break;
             case "motos":
