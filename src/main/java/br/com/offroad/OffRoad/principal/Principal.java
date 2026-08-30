@@ -16,7 +16,7 @@ private String montadora;
         ChamaApi obterDados = new ChamaApi();
         ConverteDados conversor = new ConverteDados();
         Veiculos[] dados = new Veiculos[]{};
-        Montadoras dadosMarca = new Montadoras("", "");
+        Montadoras[] dadosMarca = new Montadoras[]{};
 
         System.out.println("****************");
         System.out.println("--- OFF ROAD ---");
@@ -41,19 +41,18 @@ private String montadora;
                 System.out.println("Digite o código da montadora: ");
                 montadora = leitor.nextLine();
 
-                // a api de montadoras tem um array dentro
-                //https://parallelum.com.br/fipe/api/v1/carros/marcas/238/modelos
-                //json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos");
-                json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/238/modelos");
-                dadosMarca = conversor.obterDados(json, Montadoras.class);
-                List<Montadoras> dadosMontadroas = new ArrayList<>();
-                dadosMontadroas.add(dadosMarca);
-                System.out.println("Exibindo informações da montadora: " + montadora);
+                json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos");
+                System.out.println(json);
+                dadosMarca = conversor.obterDados(json, Montadoras[].class);
 
-                for(var marcas : dadosMontadroas){
-                    System.out.println(marcas);
-                }
+//                List<Montadoras> dadosMontadroas = new ArrayList<>();
+//                dadosMontadroas.add(dadosMarca);
+                Arrays.stream(dadosMarca)
+                        .forEach(System.out::println);
 
+
+                //{"modelos":[{"codigo":11920,"nome":"Atto 8 1.5 16V Aut."},{"codigo":9902,"nome":"D1 EV (Elétrico)"}
+                // ele ta pegando esse objeto primeiro "modelos"
 
 
                 break;
