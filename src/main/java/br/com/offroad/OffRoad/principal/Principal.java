@@ -49,13 +49,13 @@ private List<Montadoras> montadoras = new ArrayList<>();
                     // fazemos a desrealizacao do json para java
 
 
-//                dadosMarca = conversor.obterDados(json, Montadoras.class);
-//                List<Montadoras> dadosMontadroas = new ArrayList<>();
-//                dadosMontadroas.add(dadosMarca);
-//
-//                for(var zum : dadosMontadroas){
-//                    System.out.println(zum);
-//                }
+                dadosMarca = conversor.obterDados(json, Montadoras.class);
+                List<Montadoras> dadosMontadroas = new ArrayList<>();
+                dadosMontadroas.add(dadosMarca);
+
+                for(var zum : dadosMontadroas){
+                    System.out.println(zum);
+                }
 
 
                 //{"modelos":[{"codigo":11920,"nome":"Atto 8 1.5 16V Aut."},{"codigo":9902,"nome":"D1 EV (Elétrico)"}

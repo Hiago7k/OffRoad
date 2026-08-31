@@ -1,4 +1,4 @@
-package br.com.offroad.OffRoad;
+package br.com.offroacd.OffRoad;
 
 import br.com.offroad.OffRoad.principal.Principal;
 import org.springframework.boot.SpringApplication;
