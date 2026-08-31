@@ -16,7 +16,8 @@ private String montadora;
         ChamaApi obterDados = new ChamaApi();
         ConverteDados conversor = new ConverteDados();
         Veiculos[] dados = new Veiculos[]{};
-        Montadoras[] dadosMarca = new Montadoras[]{};
+        // Montadoras[] dadosMarca = new Montadoras[]{};
+        Montadoras dadosMarca = new Montadoras("teste", "teste","teste");
 
         System.out.println("****************");
         System.out.println("--- OFF ROAD ---");
@@ -42,13 +43,17 @@ private String montadora;
                 montadora = leitor.nextLine();
 
                 json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos");
-                System.out.println(json);
-                dadosMarca = conversor.obterDados(json, Montadoras[].class);
+                System.out.println(json); // a chamada de api esta okay, o problema e quando
+                    // fazemos a desrealizacao do json para java
 
+
+//                dadosMarca = conversor.obterDados(json, Montadoras.class);
 //                List<Montadoras> dadosMontadroas = new ArrayList<>();
 //                dadosMontadroas.add(dadosMarca);
-                Arrays.stream(dadosMarca)
-                        .forEach(System.out::println);
+//
+//                for(var zum : dadosMontadroas){
+//                    System.out.println(zum);
+//                }
 
 
                 //{"modelos":[{"codigo":11920,"nome":"Atto 8 1.5 16V Aut."},{"codigo":9902,"nome":"D1 EV (Elétrico)"}
