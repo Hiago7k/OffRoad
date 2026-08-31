@@ -11,13 +11,15 @@ public class Principal {
 private String json;
 private String modelo;
 private String montadora;
+private List<Montadoras> montadoras = new ArrayList<>();
 
     public void exibeMenu() {
         ChamaApi obterDados = new ChamaApi();
         ConverteDados conversor = new ConverteDados();
         Veiculos[] dados = new Veiculos[]{};
-        // Montadoras[] dadosMarca = new Montadoras[]{};
-        Montadoras dadosMarca = new Montadoras("teste", "teste","teste");
+      //  Montadoras dadosMarca = new Montadoras{};
+        Object Montadoras = null;
+        Montadoras dadosMarca = new Montadoras("", "",  montadoras);
 
         System.out.println("****************");
         System.out.println("--- OFF ROAD ---");
