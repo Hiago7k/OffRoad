@@ -17,7 +17,6 @@ private List<Montadoras> montadoras = new ArrayList<>();
         ChamaApi obterDados = new ChamaApi();
         ConverteDados conversor = new ConverteDados();
         Veiculos[] dados = new Veiculos[]{};
-      //  Montadoras dadosMarca = new Montadoras{};
         Object Montadoras = null;
         Montadoras dadosMarca = new Montadoras("", "",  montadoras);
 
@@ -45,21 +44,19 @@ private List<Montadoras> montadoras = new ArrayList<>();
                 montadora = leitor.nextLine();
 
                 json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos");
-                System.out.println(json); // a chamada de api esta okay, o problema e quando
-                    // fazemos a desrealizacao do json para java
-
-
                 dadosMarca = conversor.obterDados(json, Montadoras.class);
-                List<Montadoras> dadosMontadroas = new ArrayList<>();
-                dadosMontadroas.add(dadosMarca);
+                montadoras.add(dadosMarca);
 
-                for(var zum : dadosMontadroas){
-                    System.out.println(zum);
-                }
+                montadoras.forEach(System.out::println);
 
-
-                //{"modelos":[{"codigo":11920,"nome":"Atto 8 1.5 16V Aut."},{"codigo":9902,"nome":"D1 EV (Elétrico)"}
-                // ele ta pegando esse objeto primeiro "modelos"
+//                for(var dadosMontadoras : montadoras){
+//                    System.out.println(dadosMontadoras);
+//                }
+//
+//                dadosMontadroas.stream()
+//                        .filter(m -> m.codigoMarca())
+//                        .filter(m -> m.nomeMarca())
+//                        .forEach(System.out::println);
 
 
                 break;
