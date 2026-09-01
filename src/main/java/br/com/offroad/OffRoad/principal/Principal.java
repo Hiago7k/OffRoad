@@ -51,17 +51,19 @@ private List<Montadoras> montadoras = new ArrayList<>();
                 // Talvez criar um map e jogar tudo la dentro
                 // depois se vira com streams para filtrar o cod e o nome
 
-               List<Montadoras> dadosMontadorasNovo = montadoras.stream()
-                       .flatMap(m -> m.nomeMarca().toLowerCase())
-                       .collect(Collectors.toList());
-                dadosMontadorasNovo.forEach(System.out::println);
 
+                System.out.println(ressult);
+
+//               List<Montadoras> dadosMontadorasNovo = montadoras.stream()
+//                       .flatMap(m -> m.nomeMarca().toLowerCase())
+//                       .collect(Collectors.toList());
+//                dadosMontadorasNovo.forEach(System.out::println);
 
 
 //                for(var dadosMontadoras : montadoras){
 //                    System.out.println(dadosMontadoras);
 //                }
-//
+
 //                dadosMontadroas.stream()
 //                        .filter(m -> m.codigoMarca())
 //                        .filter(m -> m.nomeMarca())
