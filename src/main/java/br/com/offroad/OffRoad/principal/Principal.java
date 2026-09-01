@@ -47,27 +47,16 @@ private List<Montadoras> montadoras = new ArrayList<>();
                 json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos");
                 dadosMarca = conversor.obterDados(json, Montadoras.class);
                 montadoras.add(dadosMarca);
-                // Review Streams
-                // Talvez criar um map e jogar tudo la dentro
-                // depois se vira com streams para filtrar o cod e o nome
+
+                montadoras.stream()
+                        .map(br.com.offroad.OffRoad.models.Montadoras::nomeMarca)
+                        .sorted()
+                        .toList();
+
+                System.out.println(montadoras);
 
 
-                System.out.println(ressult);
 
-//               List<Montadoras> dadosMontadorasNovo = montadoras.stream()
-//                       .flatMap(m -> m.nomeMarca().toLowerCase())
-//                       .collect(Collectors.toList());
-//                dadosMontadorasNovo.forEach(System.out::println);
-
-
-//                for(var dadosMontadoras : montadoras){
-//                    System.out.println(dadosMontadoras);
-//                }
-
-//                dadosMontadroas.stream()
-//                        .filter(m -> m.codigoMarca())
-//                        .filter(m -> m.nomeMarca())
-//                        .forEach(System.out::println);
 
 
                 break;
