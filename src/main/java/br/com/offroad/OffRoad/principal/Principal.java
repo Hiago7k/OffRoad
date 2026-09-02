@@ -52,6 +52,8 @@ private List<Montadoras> montadoras = new ArrayList<>();
                             .collect(Collectors.toList())
                             .forEach(System.out::println);
 
+                montadoras.forEach(System.out::println);
+
                 break;
             case "motos":
                 System.out.println("caiu em motos");
