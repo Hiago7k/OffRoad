@@ -18,7 +18,6 @@ private List<Montadoras> montadoras = new ArrayList<>();
         ChamaApi obterDados = new ChamaApi();
         ConverteDados conversor = new ConverteDados();
         Veiculos[] dados = new Veiculos[]{};
-        Object Montadoras = null;
         Montadoras dadosMarca = new Montadoras("Feiajo", "Arroz",  montadoras);
 
         System.out.println("****************");
@@ -48,11 +47,10 @@ private List<Montadoras> montadoras = new ArrayList<>();
                 dadosMarca = conversor.obterDados(json, Montadoras.class);
                 montadoras.add(dadosMarca);
 
-                // isso aqui deu certo porem retorna null
-                montadoras.stream()
+                    montadoras.stream()
                         .map(br.com.offroad.OffRoad.models.Montadoras::Modelo)
-                                .forEach(System.out::println);
-
+                            .collect(Collectors.toList())
+                            .forEach(System.out::println);
 
                 break;
             case "motos":

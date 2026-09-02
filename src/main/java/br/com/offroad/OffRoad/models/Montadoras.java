@@ -10,4 +10,5 @@ public record Montadoras<Modelos>(@JsonAlias("codigo") String codigoMarca,
                                   @JsonAlias("nome") String nomeMarca,
                                   @JsonAlias("modelos") List<Modelos> Modelo
                          ){
+
 }
