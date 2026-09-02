@@ -49,7 +49,7 @@ private List<Montadoras> montadoras = new ArrayList<>();
 
                     montadoras.stream()
                         .map(br.com.offroad.OffRoad.models.Montadoras::Modelo)
-                            .collect(Collectors.toList())
+                            .collect(Collectors.toSet())
                             .forEach(System.out::println);
 
                 montadoras.forEach(System.out::println);
