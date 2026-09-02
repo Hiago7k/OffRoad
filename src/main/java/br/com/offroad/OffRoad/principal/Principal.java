@@ -47,12 +47,12 @@ private List<Montadoras> montadoras = new ArrayList<>();
                 dadosMarca = conversor.obterDados(json, Montadoras.class);
                 montadoras.add(dadosMarca);
 
-                    montadoras.stream()
-                        .map(br.com.offroad.OffRoad.models.Montadoras::Modelo)
-                            .collect(Collectors.toSet())
-                            .forEach(System.out::println);
 
-                montadoras.forEach(System.out::println);
+
+               List<Montadoras> marcas = montadoras.stream()
+                               .flatMap(List::stream)
+                                       .collect(Collectors.toList());
+                System.out.println(marcas);
 
                 break;
             case "motos":
