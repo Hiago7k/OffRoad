@@ -24,7 +24,6 @@ private String endereco;
         ChamaApi obterDados = new ChamaApi();
         ConverteDados conversor = new ConverteDados();
         Veiculos[] dados = new Veiculos[]{};
-        Veiculos[] dados2 = new Veiculos[]{};
         Montadoras dadosMarca = new Montadoras("Feiajo", "Arroz",  montadoras);
 
         System.out.println("****************");
@@ -82,10 +81,9 @@ private String endereco;
                 endereco =  URL_API + "carros/marcas/" + montadora + "/modelos/" + codigoVeiculo + "/anos/";
                 json = obterDados.callApiVeiculos(endereco);
                 System.out.println(json);
-               // dados2 = conversor.obterDados(endereco, Veiculos[].class);
+                dados = conversor.obterDados(json, Veiculos[].class);
                 System.out.println("*********");
-
-                Arrays.stream(dados2)
+                Arrays.stream(dados)
                         .forEach(System.out::println);
 
 
