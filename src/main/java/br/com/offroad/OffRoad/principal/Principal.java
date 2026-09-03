@@ -47,14 +47,10 @@ private List<Montadoras> montadoras = new ArrayList<>();
                 dadosMarca = conversor.obterDados(json, Montadoras.class);
                 montadoras.add(dadosMarca);
 
-
-                //Temos uma lista dentro de outra
-                // queremos pegar tudo da lista e juntar numa lista só
-                // lista aninhada
-                montadoras.stream()
-                        .flatMap(l -> l.Modelo().stream())
-                        .forEach(System.out::println);
-
+                 montadoras.stream()
+                    .flatMap(l -> l.Modelo().stream())
+                         .map(l -> l.toString().toUpperCase())
+                         .forEach(System.out::println);
 
                 break;
             case "motos":
