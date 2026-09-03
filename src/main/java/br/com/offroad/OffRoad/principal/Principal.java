@@ -48,11 +48,13 @@ private List<Montadoras> montadoras = new ArrayList<>();
                 montadoras.add(dadosMarca);
 
 
+                //Temos uma lista dentro de outra
+                // queremos pegar tudo da lista e juntar numa lista só
+                // lista aninhada
+                montadoras.stream()
+                        .flatMap(l -> l.Modelo().stream())
+                        .forEach(System.out::println);
 
-               List<Montadoras> marcas = montadoras.stream()
-                               .flatMap(List::stream)
-                                       .collect(Collectors.toList());
-                System.out.println(marcas);
 
                 break;
             case "motos":
