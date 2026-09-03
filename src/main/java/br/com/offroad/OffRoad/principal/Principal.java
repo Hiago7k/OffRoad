@@ -72,8 +72,6 @@ private String endereco;
                         .filter(l -> l.toString().contains(trechoVeiculo))
                         .forEach(System.out::println);
 
-                // depois digite código do carro
-                // Retorna todos os anos que tenha cadastrado na tabela fip  eo valor
 
                 System.out.println("Digite o código de um carro que deseja saber mais: ");
                 codigoVeiculo = leitor.nextLine();
@@ -82,7 +80,7 @@ private String endereco;
                 json = obterDados.callApiVeiculos(endereco);
                 System.out.println(json);
                 dados = conversor.obterDados(json, Veiculos[].class);
-                System.out.println("*********");
+
                 Arrays.stream(dados)
                         .forEach(System.out::println);
 
