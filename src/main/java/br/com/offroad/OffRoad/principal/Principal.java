@@ -46,10 +46,12 @@ private List<Montadoras> montadoras = new ArrayList<>();
                 json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos");
                 dadosMarca = conversor.obterDados(json, Montadoras.class);
                 montadoras.add(dadosMarca);
+                //{CODIGO=11199, NOME=YUAN PRO (ELÉTRICO)}
+                String regex = "[\\{\\}]";
 
                  montadoras.stream()
                     .flatMap(l -> l.Modelo().stream())
-                         .map(l -> l.toString().toUpperCase())
+                         .map(l -> l.toString().toUpperCase().replaceAll(regex, ""))
                          .forEach(System.out::println);
 
                 break;
