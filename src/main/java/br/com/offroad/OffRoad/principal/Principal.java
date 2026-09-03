@@ -5,6 +5,7 @@ import br.com.offroad.OffRoad.models.Montadoras;
 import br.com.offroad.OffRoad.models.Veiculos;
 import br.com.offroad.OffRoad.services.ChamaApi;
 
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,10 @@ public class Principal {
 private String json;
 private String modelo;
 private String montadora;
-private List<Montadoras> montadoras = new ArrayList<>();
+private String regex = "[\\{\\}]";
+private final String URL_API = "https://parallelum.com.br/fipe/api/v1/";
+private String endereco;
+    private List<Montadoras> montadoras = new ArrayList<>();
 
     public void exibeMenu() {
         ChamaApi obterDados = new ChamaApi();
@@ -25,14 +29,15 @@ private List<Montadoras> montadoras = new ArrayList<>();
         System.out.println("****************");
 
         Scanner leitor = new Scanner(System.in);
-        System.out.println("Escolha uma categoria abaixo");
         System.out.println("carros " + "\nmotos" + "\ncaminhoes");
         System.out.println("Digite o modelo: ");
         modelo = leitor.nextLine();
 
         switch (modelo) {
-            case "carros":
-                json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas");
+            case "carros" :
+                endereco = URL_API + "carros/marcas/";
+                System.out.println(endereco);
+                json = obterDados.callApiVeiculos(endereco);
                 dados = conversor.obterDados(json, Veiculos[].class);
 
                 System.out.println("Exibindo todas as montadoras");
@@ -42,13 +47,12 @@ private List<Montadoras> montadoras = new ArrayList<>();
                 System.out.println("------------------------------------------------------------");
                 System.out.println("Digite o código da montadora: ");
                 montadora = leitor.nextLine();
-
-                json = obterDados.callApiVeiculos("https://parallelum.com.br/fipe/api/v1/carros/marcas/" + montadora + "/modelos");
+                endereco = URL_API + "carros/marcas/" + montadora + "/modelos/";
+                json = obterDados.callApiVeiculos(endereco);
                 dadosMarca = conversor.obterDados(json, Montadoras.class);
                 montadoras.add(dadosMarca);
-                //{CODIGO=11199, NOME=YUAN PRO (ELÉTRICO)}
-                String regex = "[\\{\\}]";
-
+                System.out.println("***************************************************************");
+                System.out.println("Exibindo Todos os carros da Montadora: " + montadora);
                  montadoras.stream()
                     .flatMap(l -> l.Modelo().stream())
                          .map(l -> l.toString().toUpperCase().replaceAll(regex, ""))
