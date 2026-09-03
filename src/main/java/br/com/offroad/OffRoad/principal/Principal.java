@@ -1,6 +1,7 @@
 package br.com.offroad.OffRoad.principal;
 
 import br.com.offroad.OffRoad.models.ConverteDados;
+import br.com.offroad.OffRoad.models.FichaTecnicaVeiculos;
 import br.com.offroad.OffRoad.models.Montadoras;
 import br.com.offroad.OffRoad.models.Veiculos;
 import br.com.offroad.OffRoad.services.ChamaApi;
@@ -78,21 +79,17 @@ private String endereco;
 
                 endereco =  URL_API + "carros/marcas/" + montadora + "/modelos/" + codigoVeiculo + "/anos/";
                 json = obterDados.callApiVeiculos(endereco);
-                System.out.println(json);
                 dados = conversor.obterDados(json, Veiculos[].class);
 
-                Arrays.stream(dados)
-                        .forEach(System.out::println);
+                List<FichaTecnicaVeiculos> veiculosOrganizados = new ArrayList<>();
 
+                for (int i = 1; i <= dados.length; i++){
+                    var jsonFicha = obterDados.callApiVeiculos(endereco + 200 + i +  "-1");
+                    FichaTecnicaVeiculos dadosFicha = conversor.obterDados(jsonFicha, FichaTecnicaVeiculos.class);
+                    veiculosOrganizados.add(dadosFicha);
+                }
 
-
-                // agrupar todos os anos e valor de uma so vez para exibir
-                // quando chamar ja agrupa todos os anos
-                // por que  sao 2 apis uma pra amarzenar os anos
-                // outra para exibir os valores e etc do ano em especifico
-                // fazer uma iteracao dentro de outra
-                // exemplo Veiculo [Valor=R$ 15k] marca=Fiat, modelo = Pailo, ano 2003, combustivel
-                // exemplo Veiculo [Valor=R$ 13k] marca=Fiat, modelo = Pailo, ano 2003, combustivel
+                veiculosOrganizados.forEach(System.out::println);
 
 
                 break;
