@@ -24,6 +24,7 @@ private String endereco;
         ChamaApi obterDados = new ChamaApi();
         ConverteDados conversor = new ConverteDados();
         Veiculos[] dados = new Veiculos[]{};
+        Veiculos[] dados2 = new Veiculos[]{};
         Montadoras dadosMarca = new Montadoras("Feiajo", "Arroz",  montadoras);
 
         System.out.println("****************");
@@ -72,9 +73,32 @@ private String endereco;
                         .filter(l -> l.toString().contains(trechoVeiculo))
                         .forEach(System.out::println);
 
-                // retorna os carros que possuem o trecho que ele escreveu
                 // depois digite código do carro
                 // Retorna todos os anos que tenha cadastrado na tabela fip  eo valor
+
+                System.out.println("Digite o código de um carro que deseja saber mais: ");
+                codigoVeiculo = leitor.nextLine();
+
+                endereco =  URL_API + "carros/marcas/" + montadora + "/modelos/" + codigoVeiculo + "/anos/";
+                json = obterDados.callApiVeiculos(endereco);
+                System.out.println(json);
+               // dados2 = conversor.obterDados(endereco, Veiculos[].class);
+                System.out.println("*********");
+
+                Arrays.stream(dados2)
+                        .forEach(System.out::println);
+
+
+
+                // agrupar todos os anos e valor de uma so vez para exibir
+                // quando chamar ja agrupa todos os anos
+                // por que  sao 2 apis uma pra amarzenar os anos
+                // outra para exibir os valores e etc do ano em especifico
+                // fazer uma iteracao dentro de outra
+                // exemplo Veiculo [Valor=R$ 15k] marca=Fiat, modelo = Pailo, ano 2003, combustivel
+                // exemplo Veiculo [Valor=R$ 13k] marca=Fiat, modelo = Pailo, ano 2003, combustivel
+
+
                 break;
             case "motos":
                 System.out.println("caiu em motos");
