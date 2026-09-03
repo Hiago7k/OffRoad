@@ -13,6 +13,8 @@ public class Principal {
 private String json;
 private String modelo;
 private String montadora;
+private String trechoVeiculo;
+private String codigoVeiculo;
 private String regex = "[\\{\\}]";
 private final String URL_API = "https://parallelum.com.br/fipe/api/v1/";
 private String endereco;
@@ -36,7 +38,6 @@ private String endereco;
         switch (modelo) {
             case "carros" :
                 endereco = URL_API + "carros/marcas/";
-                System.out.println(endereco);
                 json = obterDados.callApiVeiculos(endereco);
                 dados = conversor.obterDados(json, Veiculos[].class);
 
@@ -51,13 +52,29 @@ private String endereco;
                 json = obterDados.callApiVeiculos(endereco);
                 dadosMarca = conversor.obterDados(json, Montadoras.class);
                 montadoras.add(dadosMarca);
-                System.out.println("***************************************************************");
+                System.out.println("****************************************************************************");
                 System.out.println("Exibindo Todos os carros da Montadora: " + montadora);
                  montadoras.stream()
                     .flatMap(l -> l.Modelo().stream())
                          .map(l -> l.toString().toUpperCase().replaceAll(regex, ""))
                          .forEach(System.out::println);
 
+                System.out.println("****************************************************************************");
+
+                System.out.println("Digite o trecho de um veiculo que deseja filtrar: ");
+                trechoVeiculo = leitor.nextLine();
+                trechoVeiculo = trechoVeiculo.toUpperCase();
+
+                System.out.println("Trazendo todos os registros que possuem " + trechoVeiculo + " na descrição");
+                montadoras.stream()
+                        .flatMap(l -> l.Modelo().stream())
+                        .map(l -> l.toString().toUpperCase().replaceAll(regex, ""))
+                        .filter(l -> l.toString().contains(trechoVeiculo))
+                        .forEach(System.out::println);
+
+                // retorna os carros que possuem o trecho que ele escreveu
+                // depois digite código do carro
+                // Retorna todos os anos que tenha cadastrado na tabela fip  eo valor
                 break;
             case "motos":
                 System.out.println("caiu em motos");
