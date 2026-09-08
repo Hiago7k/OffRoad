@@ -82,16 +82,14 @@ private String endereco;
                 dados = conversor.obterDados(json, Veiculos[].class);
 
                 List<FichaTecnicaVeiculos> veiculosOrganizados = new ArrayList<>();
-                int ano = 2000;
-                for (int i = 1; i <= 50; i++) { // ajustar algo aqui
-                    var jsonFicha = obterDados.callApiVeiculos(endereco + ano + i + "-1");
+                for (int i = 1995; i <= 2026; i++) {
+                    var jsonFicha = obterDados.callApiVeiculos(endereco + i + "-1");
                     FichaTecnicaVeiculos dadosFicha = conversor.obterDados(jsonFicha, FichaTecnicaVeiculos.class);
-                    if(jsonFicha.contains("{\"error\":\"veículo não encontrado para a referência informada\"}"))
+                    if(!jsonFicha.contains("{\"error\":\"veículo não encontrado para a referência informada\"}"))
                     {
-                        System.out.println(dadosFicha);
-                        System.out.println("Nao salvo");
-                    }else {
                         veiculosOrganizados.add(dadosFicha);
+                    }else {
+                        System.out.println("Não encontrei nenhum carro do ano " +  i);
                     }
 
                 }
